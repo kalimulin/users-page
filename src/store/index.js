@@ -5,10 +5,18 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    usersList: []
+    usersList: [],
+    usersPerPage: 5
   },
   getters: {
-    getUsersList: state => (start = 0, number = 5) => state.usersList.slice(start, start + number)
+    getUsersList: state => (page = 1) => {
+      const start = (page - 1) * state.usersPerPage
+      const end = page * state.usersPerPage
+      console.log(start, end)
+      return state.usersList.slice(start, end)
+    },
+    getCountUsersPerPage: state => state.usersPerPage,
+    getUsersCount: state => state.usersList.length
   },
   mutations: {
     setUsersList: (state, list) => {
