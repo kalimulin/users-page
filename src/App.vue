@@ -11,8 +11,8 @@
   export default {
     name: 'Home',
     methods: {
-      fetchUsers() {
-        this.$store.dispatch('writeUsersList')
+      fetchData() {
+        Promise.all([this.$store.dispatch('writeUsersList'), this.$store.dispatch('writeTasksList')])
           .then((response) => {
             // здесь предполагается какое-либо сообщение в интерфейсе о том, что данные получены
             console.log('data recieved', response)
@@ -24,7 +24,7 @@
       }
     },
     created() {
-      this.fetchUsers()
+      this.fetchData()
     }
   }
 </script>

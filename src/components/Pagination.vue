@@ -9,12 +9,6 @@
 <script>
   export default {
     name: "Pagination",
-    props: {
-      page: {
-        type: Number,
-        default: 1
-      }
-    },
     computed: {
       usersPerPage() { return this.$store.getters.getCountUsersPerPage },
       usersCount() { return this.$store.getters.getUsersCount },
@@ -25,11 +19,14 @@
           items.push(i + 1)
         }
         return items
+      },
+      page() {
+        return this.$store.getters.getCurrentPage
       }
     },
     methods: {
       goToPage(page) {
-        this.$emit('page', page)
+        this.$store.commit('setCurrentPage', page)
       }
     }
   }
@@ -40,7 +37,6 @@
     display flex
     justify-content center
     border-top 1px solid rgba(0,0,0,.5)
-
     &__item
       padding 5px
       cursor pointer

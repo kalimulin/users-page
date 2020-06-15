@@ -10,33 +10,26 @@
             td Phone
         tbody
           tr(v-for="user in users", :key="user.id")
-            td {{user.name}}
+            td
+              router-link(:to="`/user/${user.id}`") {{user.name}}
             td {{user.email}}
             td {{user.phone}}
       div(v-else) Список пользователей пуст
-    Pagination(v-if="users && users.length", @page="changePage", :page="currentPage")
+    Pagination(v-if="users && users.length")
 </template>
 
 <script>
 import Pagination from "@/components/Pagination";
 export default {
   name: 'Home',
-  data: () => ({
-    currentPage: 1
-  }),
   components: {
     Pagination
   },
   computed: {
     users() {
       return this.$store.getters.getUsersList(this.currentPage)
-    }
+    },
   },
-  methods: {
-    changePage(page) {
-      this.currentPage = page
-    }
-  }
 }
 </script>
 

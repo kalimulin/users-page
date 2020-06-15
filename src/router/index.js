@@ -4,12 +4,17 @@ import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
-  const routes = [
+const routes = [
   {
     path: '/',
     name: 'Home',
     component: Home
   },
+  {
+    path: '/user/:id',
+    name: 'UserTasks',
+    component: () => import('@/views/UserTasks.vue')
+  }
 ]
 
 const router = new VueRouter({
