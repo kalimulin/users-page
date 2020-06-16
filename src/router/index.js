@@ -14,6 +14,10 @@ const routes = [
     path: '/user/:id',
     name: 'UserTasks',
     component: () => import('@/views/UserTasks.vue')
+  },
+  {
+    path: '*',
+    component: () => import('@/components/NotFound.vue')
   }
 ]
 

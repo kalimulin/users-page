@@ -10,9 +10,9 @@
             td Phone
         tbody
           tr(v-for="user in users", :key="user.id")
-            td
+            td.users-list__name
               router-link(:to="`/user/${user.id}`") {{user.name}}
-            td {{user.email}}
+            td.users-list__email {{user.email}}
             td {{user.phone}}
       div(v-else) Список пользователей пуст
     Pagination(v-if="users && users.length")
@@ -39,6 +39,11 @@ export default {
       width 100%
       margin-bottom 1rem
       border-collapse collapse
+      .users-list__name
+        text-align left
+        width 40%
+      .users-list__email
+        width 30%
       thead
         font-weight bold
         tr
