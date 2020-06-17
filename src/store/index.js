@@ -38,6 +38,17 @@ export default new Vuex.Store({
     },
     setCurrentPage: (state, page) => {
       state.currentPage = page
+    },
+    removeTask: (state, id) => {
+      const tasks = [...state.tasksList]
+      const idx = tasks.findIndex(task => task.id === id)
+      tasks.splice(idx, 1)
+      state.tasksList = tasks
+    },
+    createTask: (state, task) => {
+      const tasks = [...state.tasksList]
+      tasks.push(task)
+      state.tasksList = tasks
     }
   },
   actions: {
@@ -76,6 +87,21 @@ export default new Vuex.Store({
             reject(e)
           })
       })
+    },
+    deleteTask: ({commit}, id) => {
+      // тут должен быть запрос к api и возвращение Promise во view
+      commit('removeTask', id)
+    },
+    addTask: ({commit}, {title, userId}) => {
+      // тут делаем запрос к api, получаем созданную задачу и записываем в store
+      const task = {
+        id: Date.now(),
+        title,
+        completed: false,
+        userId
+      }
+      console.log(task)
+      commit('createTask', task)
     }
   },
   modules: {
