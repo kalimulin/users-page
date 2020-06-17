@@ -100,7 +100,6 @@ export default new Vuex.Store({
         completed: false,
         userId
       }
-      console.log(task)
       commit('createTask', task)
     }
   },

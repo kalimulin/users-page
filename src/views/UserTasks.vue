@@ -34,8 +34,8 @@ export default {
     },
     addTask(userId) {
       const title = prompt('Укажите описание задачи')
-      if (title) {
-        this.$store.dispatch('addTask', {title, userId})
+      if (title && title.trim()) {
+        this.$store.dispatch('addTask', {title: title.trim(), userId})
       }
     }
   }
